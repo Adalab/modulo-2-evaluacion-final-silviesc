@@ -1,0 +1,13 @@
+@import 'core/variables';
+@import 'core/reset';
+@import 'layout/header';
+@import 'layout/aside';
+@import 'layout/article';
+
+.body {
+    background-color: $black;
+}
+.main {
+    display: flex;
+    flex-direction: row;
+}

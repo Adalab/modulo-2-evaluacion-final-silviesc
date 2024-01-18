@@ -1,0 +1,21 @@
+.aside {
+    background-color: $pink;
+    width: 30vw;
+    height: 80vh;
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+
+    &__title {
+        padding: 15px;
+
+    }
+
+    &__list {
+        background-color: $black;
+        width: 28vw;
+        height: 70vh;
+    }
+}
