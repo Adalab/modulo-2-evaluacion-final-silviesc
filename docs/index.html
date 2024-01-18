@@ -3,18 +3,32 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Adalab Web Starter Kit</title>
+    <title>Evaluación módulo 2 - Javascript</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
     
     <link rel="icon" href="./images/favicon.png" />
-    <link rel="stylesheet" href="./assets/index-345dfff3.css">
+    <link rel="stylesheet" href="./assets/index-9160d068.css">
   </head>
 
-  <body>
-    <div class="page">
-      
-      <h2>Hola :)</h2>
-    </div>
+  <body class="body">
+    <header class="header">
+    <h1 class="header__title">Buscador de series de anime</h1>
+    <form>
+        <input type="text" class="header__input js-input" placeholder="Ejemplo: Naruto">
+        <input type="submit" class="header__btn js-btnSubmit" value="Enviar">
+        <input type="submit" class="header__btn js-btnReset" value="Reset">
+    </form>
+</header>
+    <main class="main">
+      <aside class="aside">
+    <h2 class="aside__title">Series Favoritas</h2>
+    <ul class="aside__list"></ul>
+</aside>
+      <main class="article">
+    <h2 class="article__title">Resultados</h2>
+    <ul class="article__list js-results"></ul>
+</main>
+    </main>
     <script src="./js/main.js"></script>
   </body>
 </html>

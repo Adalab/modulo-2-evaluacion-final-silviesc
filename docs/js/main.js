@@ -1,2 +1,2 @@
-
+const o=document.querySelector(".js-input"),s=document.querySelector(".js-btnSubmit");document.querySelector(".js-btnReset");document.querySelector(".js-results");function c(t){t.preventDefault();const n=o.value;fetch(`https://api.jikan.moe/v4/anime?q=${n}`).then(e=>e.json()).then(e=>{const i={title:e.title,img:e.images};console.log(i)})}s.addEventListener("click",c);
 //# sourceMappingURL=main.js.map
