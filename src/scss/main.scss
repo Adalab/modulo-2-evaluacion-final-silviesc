@@ -5,9 +5,10 @@
 @import 'layout/article';
 
 .body {
-    background-color: $black;
+    background-image: url(../images/anime.jpeg);
 }
 .main {
+    margin-top: 70px;
     display: flex;
     flex-direction: row;
 }

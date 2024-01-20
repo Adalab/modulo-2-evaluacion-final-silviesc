@@ -1,22 +1,38 @@
 .article {
     background-color: $white;
     width: 65vw;
-    height: 80vh;
     margin-left: 20px;
     display: flex;
     flex-direction: column;
     justify-content: start;
     align-items: center;
+    border: 2px solid black;
+    border-radius: 10px;
+    font-family: Inconsolata;
 
     &__title {
-        padding: 10px;
+        padding: 5px;
     }
 
     &__list {
-        background-color: $black;
-        width: 62vw;
-        height: 70vh;
+        width: 64vw;
+        height: auto;
         margin-top: 10px;
-        color: $white;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        overflow-x: auto;
     }
+
+}
+.li {
+    list-style: none;
+    width: 30%;
+    height: auto;
+}
+.favResult {
+    color: $blue;
+    border: 3px solid $blue;
+    width: auto;
+    height: auto;
 }
