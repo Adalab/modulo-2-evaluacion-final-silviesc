@@ -6,7 +6,7 @@
     flex-direction: column;
     justify-content: start;
     align-items: center;
-    border: 2px solid black;
+    border: 2px solid $black;
     border-radius: 10px;
     font-family: Inconsolata;
 
@@ -17,7 +17,6 @@
     &__list {
         width: 29vw;
         height: auto;
-        background-color: transparent;
     }
 }
 .favAside {

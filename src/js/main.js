@@ -6,7 +6,6 @@ const btnReset = document.getElementById('reset');
 const listResults = document.querySelector('.js-results');
 const listFavorites = document.querySelector('.js-favs');
 const message = document.querySelector('.js-popup');
-const cancelIcon = document.querySelector('.js-cancel');
 const invalidUrl = 'https://cdn.myanimelist.net/img/sp/icon/apple-touch-icon-256.png';
 const placeholderURL = 'https://via.placeholder.com/210x295/ffffff/666666/?text=TV';
 
@@ -50,9 +49,27 @@ function getFilmsApi (event) {
 
 btnSubmit.addEventListener('click', getFilmsApi);
 
+//Botón para eliminar una película de favoritos
+const handleRemoveFav = (event) => {
+    event.preventDefault();
+    const cancelClicked = event.target.closest('.js-cancel');
+    if (cancelClicked) {
+        const cancelFilm = cancelClicked.previousElementSibling.textContent;
+        const cancelIndex = storedFavFilms.findIndex(film => film.title === cancelFilm);
+        if (cancelIndex !== -1) {
+            storedFavFilms.splice(cancelIndex, 1);
+            localStorage.setItem('favoriteFilms', JSON.stringify(storedFavFilms));
+            renderFavList(storedFavFilms);
+        }
+    }
+}
 
-//Funciones para que, al hacer click en una pelicula, se añada a la lista de favoritas y cambie el color
-//También añadimos dentro el condicional para que guarde cada elemento clickado solo una vez
+//Esto es para que me pinte las pelis favoritas nada mas cargar la página
+let storedFavFilms = JSON.parse(localStorage.getItem('favoriteFilms')) || [];
+renderFavList(storedFavFilms);
+
+//Funciones para que, al hacer click en una pelicula, se añada a la lista de favoritas y cambie el color en resultados
+//También añadimos un condicional para que guarde cada elemento clickado solo una vez
 
 function renderFavList (favFilms) {
     listFavorites.innerHTML = '';
@@ -66,14 +83,18 @@ function renderFavList (favFilms) {
         listFavorites.appendChild(li);
         li.classList.add('favAside');
     }
+    let cancelIcons = document.querySelectorAll('.js-cancel');
+    for (const icon of cancelIcons) {
+        icon.addEventListener('click', handleRemoveFav)
+    }
 }
 
 const handleFavorites = (event) => {
+    event.preventDefault();
     const filmClicked = event.target.closest('.li'); //para que solo aplique estilos al li pinchado, no a todo el contenedor si pincho mal
     if (filmClicked) {
         filmClicked.classList.add('favResult');
         const favData = films.find(film => film.title === filmClicked.querySelector('h3').textContent);
-        const storedFavFilms = JSON.parse(localStorage.getItem('favoriteFilms')) || [];
         const existingIndex = storedFavFilms.findIndex(film => film.title === favData.title);
         if (existingIndex === -1) {
             storedFavFilms.push(favData);
@@ -94,10 +115,6 @@ const handleFavorites = (event) => {
 
 listResults.addEventListener('click', handleFavorites);
 
-//Esto es para que me pinte las pelis favs nada mas cargar la página
-const storedFavFilms = JSON.parse(localStorage.getItem('favoriteFilms')) || [];
-renderFavList(storedFavFilms);
-
 //Función de reset
 function handleReset (event) {
     event.preventDefault();
@@ -111,15 +128,5 @@ function handleReset (event) {
 
 btnReset.addEventListener('click', handleReset);
 
-//Botón de eliminar de cada película
 
-// const handleRemoveFav = (event) => {
-//     event.preventDefault();
-//     const filmClicked = event.target.closest('.js-cancel');
-//     if (filmClicked) {
-//         //quitar esa pelicula del array de favfilms, borrarla tb del localstorage y quitarla del html
 
-//     }
-// }
-
-// listFavorites.addEventListener('click', handleRemoveFav);
